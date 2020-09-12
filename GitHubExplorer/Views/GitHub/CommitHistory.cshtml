@@ -1,0 +1,81 @@
+﻿@model GitHubExplorer.Models.GitHubCommitHistoryCollection
+<head>
+    <title>Git Hub</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<h2>Commit History</h2>
+<div>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Commit Message</th>
+                    <th>Date of Commit</th>
+                    <th>Commiter</th>
+                    <th>GitHub Commit Url</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.GitHubCommitHistory != null && Model.GitHubCommitHistory.Count != 0)
+                {
+                    foreach (var item in Model.GitHubCommitHistory)
+                    {
+                        <tr>
+                            <td>@item.CommitDetail.Message</td>
+                            <td>@item.CommitDetail.CommitterDetail.Date</td>
+                            <td>@item.CommitDetail.CommitterDetail.Name</td>
+                            <td><a href="@(item.HtmlUrl)">@item.HtmlUrl</a></td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+        <!-- pager -->
+        @if (Model.Pager != null && Model.Pager.EndPage > 1)
+        {
+            <ul class="pagination">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                    <li>
+                        <a href="~/GitHub/CommitHistory?CommitUrl=@(Model.CommitUrl)">First</a>
+                    </li>
+                    <li>
+                        <a href="~/GitHub/CommitHistory?CommitUrl=@(Model.CommitUrl)&page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                    </li>
+                }
+                @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                {
+                    <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                        <a href="~/GitHub/CommitHistory?CommitUrl=@(Model.CommitUrl)&page=@page">@page</a>
+                    </li>
+                }
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                    <li>
+                        <a href="~/GitHub/CommitHistory?CommitUrl=@(Model.CommitUrl)&page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                    </li>
+                    <li>
+                        <a href="~/GitHub/CommitHistory?CommitUrl=@(Model.CommitUrl)&page=@(Model.Pager.TotalPages)">Last</a>
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

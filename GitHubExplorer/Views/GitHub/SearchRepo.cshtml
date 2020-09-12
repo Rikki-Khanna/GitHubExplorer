@@ -1,0 +1,117 @@
+﻿@model GitHubExplorer.Models.GitHubRepository
+<head>
+    <title>Git Hub</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<h2>Search Git Hub Repository</h2>
+<div class="row">
+    <div class="col-md-4">
+        @using (Html.BeginForm("SearchRepo", "GitHub"))
+        {
+            <div class="form-group">
+                <table>
+                    <thead>
+                        <tr>
+                            @if (Model != null && Model.SearchName != null)
+                            {
+                                <th> @Html.TextBox("searchName", "", new { @disabled = "disabled" }) </th>
+                                <th><input type="submit" value="Reset" /></th>
+                            }
+                            else
+                            {
+                                <th> @Html.TextBox("searchName")</th>
+                                <th><input type="submit" value="Search" /></th>
+                            }
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        }
+    </div>
+    <div>
+        <div>
+            <table>
+                @if (Model != null && Model.RepositoryItems != null && Model.RepositoryItems.Count != 0)
+                {
+                    <thead>
+                        <tr>
+                            <th>Repository Name</th>
+                            <th>Owner</th>
+                            <th>Language</th>
+                            <th>License Name</th>
+                            <th>Last Updated Time</th>
+                            <th>Commits Url</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.RepositoryItems)
+                        {
+                            <tr>
+                                <td>@item.RepositoryName</td>
+                                <td>@item.RepositoryOwner.Login</td>
+                                <td>@item.Language</td>
+                                @if (item.RepositoryLicense != null)
+                                {
+                                    <td>@item.RepositoryLicense.LicenseName</td>
+                                }
+                                else
+                                {
+                                    <td>N/A</td>
+                                }
+                                <td>@item.UpdatedTime</td>
+                                <td><a href="~/GitHub/CommitHistory?CommitUrl=@(item.CommitsUrl.Substring(23).Replace("{/sha}", ""))">@item.CommitsUrl</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+            <!-- pager -->
+            @if (Model != null && Model.Pager != null && Model.Pager.EndPage > 1)
+            {
+                <ul class="pagination">
+                    @if (Model.Pager.CurrentPage > 1)
+                    {
+                        <li>
+                            <a href="~/GitHub/SearchRepo?searchName=@(Model.SearchName)">First</a>
+                        </li>
+                        <li>
+                            <a href="~/GitHub/SearchRepo?searchName=@(Model.SearchName)&page=@(Model.Pager.CurrentPage - 1)">Previous</a>
+                        </li>
+                    }
+                    @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                    {
+                        <li class="@(page == Model.Pager.CurrentPage ? "active" : "")">
+                            <a href="~/GitHub/SearchRepo?searchName=@(Model.SearchName)&page=@page">@page</a>
+                        </li>
+                    }
+                    @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                    {
+                        <li>
+                            <a href="~/GitHub/SearchRepo?searchName=@(Model.SearchName)&page=@(Model.Pager.CurrentPage + 1)">Next</a>
+                        </li>
+                        <li>
+                            <a href="~/GitHub/SearchRepo?searchName=@(Model.SearchName)&page=@(Model.Pager.TotalPages)">Last</a>
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    </div>
+</div>
