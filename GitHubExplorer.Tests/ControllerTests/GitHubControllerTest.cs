@@ -5,7 +5,6 @@ using NUnit.Framework;
 using GitHubExplorer.Service.Interfaces;
 using FizzWare.NBuilder;
 using System.Web.Mvc;
-using System.Collections.Generic;
 
 namespace GitHubExplorer.Tests.ControllerTests
 {
@@ -30,19 +29,20 @@ namespace GitHubExplorer.Tests.ControllerTests
             var actualResult = Builder<GitHubRepository>.CreateNew()
                 .With(x => x.RepositoryItems = Builder<Items>.CreateListOfSize(100).Build()).Build();
 
-            _mockService.Setup(x => x.GetRepository( actualResult.SearchName, 1)).Returns(actualResult);
+            // Passed -> string and page number, method GetRepository returns GitHubRepository.
+            _mockService.Setup(x => x.GetRepository(It.IsAny<string>(), 1)).Returns(actualResult);
 
             // Assign
             var result =
                 _gitHubController.SearchRepo(actualResult.SearchName, 1) as ViewResult;
 
             // Assert
-            _mockService.Verify(x => x.GetRepository(actualResult.SearchName, 1), Times.Once);
+            _mockService.Verify(x => x.GetRepository(It.IsAny<string>(), 1), Times.Once);
 
-            var model = result?.Model as GitHubRepository;
+             var model = result?.Model as GitHubRepository;
 
-            if (model == null) return;
-            Assert.AreEqual(model.RepositoryItems.Count, actualResult.RepositoryItems.Count);
+             if (model == null) return;
+             Assert.AreEqual(model.RepositoryItems.Count, actualResult.RepositoryItems.Count);
 
         }
 
@@ -53,14 +53,15 @@ namespace GitHubExplorer.Tests.ControllerTests
             var actualResult = Builder<GitHubCommitHistoryCollection>.CreateNew()
                 .With(x => x.GitHubCommitHistory = Builder<GitHubCommitHistory>.CreateListOfSize(100).Build()).Build();
 
-            _mockService.Setup(x => x.GetCommitHistory(actualResult.CommitUrl, 1)).Returns(actualResult);
+            // Passed path of commit url and page number, method GetCommitHistory returns GitHubCommitHistoryCollection.
+            _mockService.Setup(x => x.GetCommitHistory(It.IsAny<string>(), 1)).Returns(actualResult);
 
             // Assign
             var result =
                 _gitHubController.CommitHistory(actualResult.CommitUrl, 1) as ViewResult;
 
             // Assert
-            _mockService.Verify(x => x.GetCommitHistory(actualResult.CommitUrl, 1), Times.Once);
+            _mockService.Verify(x => x.GetCommitHistory(It.IsAny<string>(), 1), Times.Once);
 
             var model = result?.Model as GitHubCommitHistoryCollection;
 
