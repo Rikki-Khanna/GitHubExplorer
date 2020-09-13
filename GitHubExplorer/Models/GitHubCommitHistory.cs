@@ -27,15 +27,13 @@ namespace GitHubExplorer.Models
         [JsonProperty("comments_url")]
         public string CommentsUrl { get; set; }
 
-        //[JsonProperty("author")]
-        //public Author AuthorDetail { get; set; }
-
-        //[JsonProperty("committer")]
-        //public Committer CommitterDetail { get; set; }
-
         [JsonProperty("parents")]
         public IList<Parent> Parents { get; set; }
     }
+
+    /// <summary>
+    /// Class Author.
+    /// </summary>
     public class Author
     {
         [JsonProperty("name")]
@@ -48,6 +46,9 @@ namespace GitHubExplorer.Models
         public DateTime Date { get; set; }
     }
 
+    /// <summary>
+    /// Class Committer.
+    /// </summary>
     public class Committer
     {
         [JsonProperty("name")]
@@ -60,6 +61,9 @@ namespace GitHubExplorer.Models
         public DateTime Date { get; set; }
     }
 
+    /// <summary>
+    /// Class Tree.
+    /// </summary>
     public class Tree
     {
         [JsonProperty("sha")]
@@ -69,6 +73,9 @@ namespace GitHubExplorer.Models
         public string Url { get; set; }
     }
 
+    /// <summary>
+    /// Class Verification.
+    /// </summary>
     public class Verification
     {
         [JsonProperty("verified")]
@@ -84,6 +91,9 @@ namespace GitHubExplorer.Models
         public object Payload { get; set; }
     }
 
+    /// <summary>
+    /// Class Commit.
+    /// </summary>
     public class Commit
     {
         [JsonProperty("author")]
@@ -107,6 +117,10 @@ namespace GitHubExplorer.Models
         [JsonProperty("Verification")]
         public Verification verification { get; set; }
     }
+
+    /// <summary>
+    /// Class Parent.
+    /// </summary>
     public class Parent
     {
         [JsonProperty("sha")]

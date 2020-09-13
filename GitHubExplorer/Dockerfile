@@ -4,4 +4,4 @@
 FROM microsoft/aspnet:4.7.2-windowsservercore-1803
 ARG source
 WORKDIR /inetpub/wwwroot
-COPY ./bin/Release/Publish/ /inetpub/wwwroot
+COPY ${source:-obj/Docker/publish} .

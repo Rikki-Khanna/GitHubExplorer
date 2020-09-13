@@ -158,6 +158,7 @@
     <Content Include="Views\GitHub\SearchRepo.cshtml" />
     <Content Include="Views\GitHub\CommitHistory.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Views\GitHub\Error.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

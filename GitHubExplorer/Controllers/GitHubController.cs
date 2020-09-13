@@ -40,14 +40,17 @@ namespace GitHubExplorer.Controllers
         /// <param name="searchName">Name of the search.</param>
         /// <param name="page">The page.</param>
         /// <returns>ActionResult.</returns>
+        [HandleError]
         public ActionResult SearchRepo(string searchName, int? page)
         {
-            if (!string.IsNullOrEmpty(searchName))
-            {
-                return View(_iRepoService.GetRepository(searchName, page));
-            }
+
+             if (!string.IsNullOrEmpty(searchName))
+             {
+                 return View(_iRepoService.GetRepository(searchName, page));
+             }
 
             return View(new GitHubRepository());
+
         }
 
         // GET: List of commit history for repository.
@@ -57,6 +60,7 @@ namespace GitHubExplorer.Controllers
         /// <param name="commitUrl">The commit URL.</param>
         /// <param name="page">The page.</param>
         /// <returns>ActionResult.</returns>
+        [HandleError]
         public ActionResult CommitHistory(string commitUrl, int? page)
         {
             if (!string.IsNullOrEmpty(commitUrl))

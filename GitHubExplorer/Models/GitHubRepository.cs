@@ -23,6 +23,9 @@ namespace GitHubExplorer.Models
         public string SearchName { get; set; }
     }
 
+    /// <summary>
+    /// Class Items.
+    /// </summary>
     public class Items
     {
         [JsonProperty("name")]
@@ -50,6 +53,9 @@ namespace GitHubExplorer.Models
         public string GitCommitsUrl { get; set; }
     }
 
+    /// <summary>
+    /// Class License.
+    /// </summary>
     public class License
     {
         [JsonProperty("key")]
@@ -69,6 +75,9 @@ namespace GitHubExplorer.Models
 
     }
 
+    /// <summary>
+    /// Class Owner.
+    /// </summary>
     public class Owner
     {
         [JsonProperty("login")]
