@@ -2,6 +2,9 @@
 
 namespace GitHubExplorer.Models
 {
+    /// <summary>
+    /// Class GitHubCommitHistoryCollection.
+    /// </summary>
     public class GitHubCommitHistoryCollection
     {
         public IList<GitHubCommitHistory> GitHubCommitHistory { get; set; }

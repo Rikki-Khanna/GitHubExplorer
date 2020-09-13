@@ -1,49 +1,46 @@
-﻿using GitHubExplorer.Models;
-using GitHubExplorer.Service.Interfaces;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Linq;
+using GitHubExplorer.Models;
+using GitHubExplorer.Service.Interfaces;
 
 namespace GitHubExplorer.Service
 {
-    public class GitHubService : IService<GitHubRepository, GitHubCommitHistoryCollection>
+    public class GitHubCommitService : IGitHubCommitService 
     {
+        /// <summary>
+        /// The configuration
+        /// </summary>
         private readonly IConfig _config;
+
+        /// <summary>
+        /// The web client
+        /// </summary>
         private readonly IHttpWebClient _webClient;
+
+        /// <summary>
+        /// The json converter
+        /// </summary>
         private readonly IJsonConverter _jsonConverter;
 
-        public GitHubService(IConfig config, IHttpWebClient webClient, IJsonConverter jsonConverter)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="GitHubCommitService"/> class.
+        /// </summary>
+        /// <param name="config">The configuration.</param>
+        /// <param name="webclient">The webclient.</param>
+        /// <param name="jsonConverter">The json converter.</param>
+        public GitHubCommitService(IConfig config, IHttpWebClient webclient, IJsonConverter jsonConverter)
         {
             _config = config;
-            _webClient = webClient;
+            _webClient = webclient;
             _jsonConverter = jsonConverter;
         }
 
-        public GitHubRepository GetRepository(string searchName, int? page)
-        {
-            var gitHubRepo = new GitHubRepository();
-            if (!string.IsNullOrEmpty(searchName))
-            {
-               var url = string.Concat(_config.GitHubUrl, "search/repositories?q=", searchName, "&page=", page, "&per_page=10");
-               var jsonResult = _webClient.GetHttpStringResponse(url);
-               gitHubRepo = JsonConvert.DeserializeObject<GitHubRepository>(jsonResult);
-                if (gitHubRepo != null)
-                {
-                    var count = gitHubRepo.TotalCount;
-
-                    if(gitHubRepo.TotalCount > 100)
-                    {
-                        count = 100;
-                    }
-                    var pager = new Pager(count, page);
-                    gitHubRepo.Pager = pager;
-                    gitHubRepo.SearchName = searchName;
-                }       
-            }
-
-            return gitHubRepo;
-        }
-
+        /// <summary>
+        /// Gets the commit history.
+        /// </summary>
+        /// <param name="commitUrl">The commit URL.</param>
+        /// <param name="page">The page.</param>
+        /// <returns>GitHubCommitHistoryCollection.</returns>
         public GitHubCommitHistoryCollection GetCommitHistory(string commitUrl, int? page)
         {
             var gitCommitHistoryCollection = new GitHubCommitHistoryCollection();

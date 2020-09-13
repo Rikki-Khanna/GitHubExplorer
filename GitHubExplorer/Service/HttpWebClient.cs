@@ -1,12 +1,22 @@
-﻿using GitHubExplorer.Service.Interfaces;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using GitHubExplorer.Service.Interfaces;
 
 namespace GitHubExplorer.Service
 {
+    /// <summary>
+    /// Class HttpWebClient.
+    /// Implements the <see cref="GitHubExplorer.Service.Interfaces.IHttpWebClient" />
+    /// </summary>
+    /// <seealso cref="GitHubExplorer.Service.Interfaces.IHttpWebClient" />
     public class HttpWebClient : IHttpWebClient
     {
+        /// <summary>
+        /// Gets the HTTP string response.
+        /// </summary>
+        /// <param name="url">The URL.</param>
+        /// <returns>System.String.</returns>
         public string GetHttpStringResponse(string url)
         {
             using (var client = new HttpClient())

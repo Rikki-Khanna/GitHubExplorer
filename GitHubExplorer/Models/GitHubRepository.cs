@@ -4,6 +4,9 @@ using Newtonsoft.Json;
 
 namespace GitHubExplorer.Models
 {
+    /// <summary>
+    /// Class GitHubRepository.
+    /// </summary>
     public class GitHubRepository
     {
         [JsonProperty("total_count")]

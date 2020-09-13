@@ -2,8 +2,17 @@
 
 namespace GitHubExplorer.Models
 {
+    /// <summary>
+    /// Class Pager.
+    /// </summary>
     public class Pager
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Pager"/> class.
+        /// </summary>
+        /// <param name="totalItems">The total items.</param>
+        /// <param name="page">The page.</param>
+        /// <param name="pageSize">Size of the page.</param>
         public Pager(int totalItems, int? page, int pageSize = 10)
         {
             // calculate total, start and end pages

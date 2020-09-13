@@ -138,12 +138,13 @@
     <Compile Include="Models\GitHubCommitHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Config.cs" />
+    <Compile Include="Service\GitHubCommitService.cs" />
     <Compile Include="Service\Interfaces\IConfig.cs" />
-    <Compile Include="Service\Interfaces\IGitHubService.cs" />
-    <Compile Include="Service\Interfaces\IService.cs" />
+    <Compile Include="Service\Interfaces\IGitHubCommitService.cs" />
+    <Compile Include="Service\Interfaces\IGitHubRepoService.cs" />
     <Compile Include="Service\JsonConverter.cs" />
     <Compile Include="Service\HttpWebClient.cs" />
-    <Compile Include="Service\GitHubService.cs" />
+    <Compile Include="Service\GitHubRepoService.cs" />
     <Compile Include="Service\Interfaces\IJsonConverter.cs" />
     <Compile Include="Service\Interfaces\IHttpWebClient.cs" />
   </ItemGroup>
@@ -163,9 +164,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
