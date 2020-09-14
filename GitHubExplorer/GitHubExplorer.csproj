@@ -132,7 +132,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GitHubCommitHistoryCollection.cs" />
-    <Compile Include="Models\GitHubRepo.cs" />
     <Compile Include="Models\GitHubRepository.cs" />
     <Compile Include="Models\Pager.cs" />
     <Compile Include="Models\GitHubCommitHistory.cs" />
