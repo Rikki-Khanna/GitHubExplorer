@@ -1,8 +1,0 @@
-version: '3.4'
-
-services:
-  githubexplorer:
-    image: ${DOCKER_REGISTRY-}githubexplorer
-    build:
-      context: .\GitHubExplorer
-      dockerfile: Dockerfile

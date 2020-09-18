@@ -2,6 +2,4 @@
 #For more information, please see http://aka.ms/containercompat 
 
 FROM microsoft/aspnet:4.7.2-windowsservercore-1803
-ARG source
-WORKDIR /inetpub/wwwroot
-COPY ${source:-obj/Docker/publish} .
+COPY ./bin/Release/Publish/ /inetpub/wwwroot

@@ -10,16 +10,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/App_global.asax.compiled">
-      <publishTime>09/13/2020 11:55:40</publishTime>
+      <publishTime>09/18/2020 08:25:47</publishTime>
     </File>
     <File Include="bin/App_global.asax.dll">
-      <publishTime>09/13/2020 11:55:40</publishTime>
+      <publishTime>09/18/2020 08:25:47</publishTime>
     </File>
     <File Include="bin/GitHubExplorer.dll">
-      <publishTime>09/13/2020 11:55:17</publishTime>
+      <publishTime>09/18/2020 08:22:19</publishTime>
     </File>
     <File Include="bin/GitHubExplorer.pdb">
-      <publishTime>09/13/2020 11:55:17</publishTime>
+      <publishTime>09/18/2020 08:22:19</publishTime>
     </File>
     <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
       <publishTime>09/13/2019 02:28:52</publishTime>
@@ -502,10 +502,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/07/2020 08:55:09</publishTime>
     </File>
     <File Include="PrecompiledApp.config">
-      <publishTime>09/13/2020 11:55:24</publishTime>
+      <publishTime>09/18/2020 08:25:30</publishTime>
     </File>
     <File Include="Views/GitHub/CommitHistory.cshtml">
       <publishTime>09/12/2020 14:22:05</publishTime>
+    </File>
+    <File Include="Views/GitHub/Error.cshtml">
+      <publishTime>09/13/2020 18:44:11</publishTime>
     </File>
     <File Include="Views/GitHub/SearchRepo.cshtml">
       <publishTime>09/12/2020 16:26:55</publishTime>
@@ -514,7 +517,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/09/2020 17:51:47</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/13/2020 11:55:23</publishTime>
+      <publishTime>09/18/2020 08:25:28</publishTime>
     </File>
   </ItemGroup>
 </Project>
