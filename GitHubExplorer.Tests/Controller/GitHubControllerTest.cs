@@ -52,14 +52,14 @@ namespace GitHubExplorer.Tests.Controller
                 .With(x => x.RepositoryItems = Builder<Items>.CreateListOfSize(100).Build()).Build();
 
             // Passed -> string and page number, method GetRepository returns GitHubRepository.
-            _mockRepoService.Setup(x => x.GetRepository(It.IsAny<string>(), 1)).Returns(actualResult);
+            _mockRepoService.Setup(x => x.GetRepository(It.IsAny<string>(), It.IsAny<int>())).Returns(actualResult);
 
             // Assign
             var result =
                 _gitHubController.SearchRepo(actualResult.SearchName, 1) as ViewResult;
 
             // Assert
-            _mockRepoService.Verify(x => x.GetRepository(It.IsAny<string>(), 1), Times.Once);
+            _mockRepoService.Verify(x => x.GetRepository(It.IsAny<string>(), It.IsAny<int>()), Times.Once);
 
              var model = result?.Model as GitHubRepository;
 
@@ -79,14 +79,14 @@ namespace GitHubExplorer.Tests.Controller
                 .With(x => x.GitHubCommitHistory = Builder<GitHubCommitHistory>.CreateListOfSize(100).Build()).Build();
 
             // Passed path of commit url and page number, method GetCommitHistory returns GitHubCommitHistoryCollection.
-            _mockCommitService.Setup(x => x.GetCommitHistory(It.IsAny<string>(), 1)).Returns(actualResult);
+            _mockCommitService.Setup(x => x.GetCommitHistory(It.IsAny<string>(), It.IsAny<int>())).Returns(actualResult);
 
             // Assign
             var result =
                 _gitHubController.CommitHistory(actualResult.CommitUrl, 1) as ViewResult;
 
             // Assert
-            _mockCommitService.Verify(x => x.GetCommitHistory(It.IsAny<string>(), 1), Times.Once);
+            _mockCommitService.Verify(x => x.GetCommitHistory(It.IsAny<string>(), It.IsAny<int>()), Times.Once);
 
             var model = result?.Model as GitHubCommitHistoryCollection;
 
